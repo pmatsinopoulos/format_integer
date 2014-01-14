@@ -19,15 +19,15 @@ class FormatInteger < Struct.new(:n)
   def format 
     temp = n
     result = ""
-    number_of_digits_added_so_far = 0
-    while 1
-      p = temp / 10
-      y = temp % 10
-      result = ",#{result}" if number_of_digits_added_so_far % 3 == 0 && number_of_digits_added_so_far >= 1 
-      result = "#{y}#{result}"
-      number_of_digits_added_so_far += 1
-      break if p == 0
-      temp = p
+    quotient = -1
+    while quotient != 0
+      quotient = temp / 1000
+      remainder = temp % 1000
+      prepend = "%#{quotient == 0 ? 'd' : '03d'}" % remainder 
+      result = ",#{result}" if result.length > 0
+      result = "#{prepend}#{result}"
+      temp = quotient
+      break if quotient == 0
     end
     result
   end

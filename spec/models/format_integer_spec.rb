@@ -42,6 +42,10 @@ describe FormatInteger do
       subject { FormatInteger.new(1000000) }
       it { expect(subject.format).to eq("1,000,000") }
     end
+    context 'when 1002' do
+      subject { FormatInteger.new(1002) }
+      it { expect(subject.format).to eq("1,002") }
+    end
   end
 end
 
